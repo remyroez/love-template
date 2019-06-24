@@ -7,25 +7,37 @@ local pauseOnUnfocus = true
 local focused = true
 local screenshot
 
+-- スクリーンショット保存先
+local screenshotDirectory = 'screenshot'
+
 -- アプリケーション
 local application = (require 'Game')()
 application:setDebugMode(debugMode)
 
 -- 読み込み
 function love.load()
+    -- ランダムシードの設定
     love.math.setRandomSeed(love.timer.getTime())
+
+    -- スクリーンショット保存先の用意
+    if #screenshotDirectory > 0 then
+        local dir = love.filesystem.getInfo(screenshotDirectory, 'directory')
+        if dir == nil then
+            love.filesystem.createDirectory(screenshotDirectory)
+        end
+    end
 end
 
 -- 更新
 function love.update(dt)
-    if focused then
+    if focused or not pauseOnUnfocus then
         application:update(dt)
     end
 end
 
 -- 描画
 function love.draw()
-    if focused or screenshot == nil then
+    if (focused or screenshot == nil) or not pauseOnUnfocus then
         -- 画面のリセット
         love.graphics.reset()
 
@@ -45,7 +57,7 @@ function love.keypressed(key, scancode, isrepeat)
         love.event.quit()
     elseif key == 'printscreen' then
         -- スクリーンショット
-        love.graphics.captureScreenshot('' .. os.time() .. '.png')
+        love.graphics.captureScreenshot((screenshotDirectory .. '/') .. os.time() .. '.png')
     elseif key == 'f5' then
         -- リスタート
         love.event.quit('restart')

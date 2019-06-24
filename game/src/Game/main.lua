@@ -18,11 +18,11 @@ end
 
 -- 更新
 function Game:update(dt, ...)
-    love.graphics.print('Hello, Game!')
 end
 
 -- 描画
 function Game:draw(...)
+    love.graphics.print('Hello, Game!')
 end
 
 -- キー入力
