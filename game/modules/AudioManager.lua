@@ -19,7 +19,7 @@ function AudioManager:destroy()
 end
 
 -- 音楽の読み込み
-function AudioManager:loadMusic(paths, opt)
+function AudioManager:loadMusics(paths, opt)
     opt = opt or {}
     local basepath = opt.basepath or ''
     local stype = opt.type or 'static'
@@ -75,7 +75,7 @@ function AudioManager:seekMusic(name, offset, unit)
 end
 
 -- サウンドの読み込み
-function AudioManager:loadSound(paths, opt)
+function AudioManager:loadSounds(paths, opt)
     opt = opt or {}
     local basepath = opt.basepath or ''
     local stype = opt.type or 'static'
@@ -110,7 +110,7 @@ function AudioManager:stopSound(name)
 end
 
 -- すべてのサウンドの停止
-function AudioManager:stopAllSound()
+function AudioManager:stopAllSounds()
     for _, sound in ipairs(self.sounds) do
         sound:stop()
     end

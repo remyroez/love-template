@@ -19,7 +19,7 @@ function Game:load(...)
     self.audio = AudioManager()
 
     -- 音楽
-    self.audio:loadMusic(
+    self.audio:loadMusics(
         {
         },
         {
@@ -29,7 +29,7 @@ function Game:load(...)
     )
 
     -- ＳＥ
-    self.audio:loadSound(
+    self.audio:loadSounds(
         {
         },
         {
