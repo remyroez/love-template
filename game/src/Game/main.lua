@@ -6,6 +6,7 @@ local Game = require(folderOfThisFile .. 'class')
 
 -- クラス
 local Application = require 'Application'
+local AudioManager = require 'AudioManager'
 
 -- 初期化
 function Game:initialize(...)
@@ -14,6 +15,27 @@ end
 
 -- 読み込み
 function Game:load(...)
+    -- オーディオマネージャ
+    self.audio = AudioManager()
+
+    -- 音楽
+    self.audio:loadMusics(
+        {
+        },
+        {
+            basepath = 'assets',
+            volume = 0.5,
+        }
+    )
+
+    -- ＳＥ
+    self.audio:loadSounds(
+        {
+        },
+        {
+            basepath = 'assets',
+        }
+    )
 end
 
 -- 更新
@@ -22,7 +44,6 @@ end
 
 -- 描画
 function Game:draw(...)
-    love.graphics.print('Hello, Game!')
 end
 
 -- キー入力
