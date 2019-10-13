@@ -18,6 +18,11 @@ function EntityStack:top()
     return lume.last(self.entities)
 end
 
+-- 呼び出し（すべて）
+function EntityStack:callAll(event, ...)
+    EntityManager.callAll(self, event, ...)
+end
+
 -- 呼び出し
 function EntityStack:call(event, ...)
     local entity = self:top()
@@ -26,9 +31,17 @@ function EntityStack:call(event, ...)
     end
 end
 
+-- 先頭にエンティティを追加する
+EntityStack.push = EntityStack.add
+
+-- 先頭のエンティティを除外する
+function EntityStack:pop()
+    return self:remove(self:top())
+end
+
 -- 先頭のエンティティを入れ替える
 function EntityStack:swap(entity)
-    self:remove(self:top())
+    self:pop()
     return self:add(entity)
 end
 
