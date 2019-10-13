@@ -20,7 +20,7 @@ end
 
 -- 呼び出し（すべて）
 function EntityStack:callAll(event, ...)
-    EntityManager.callAll(self, event, ...)
+    EntityManager.call(self, event, ...)
 end
 
 -- 呼び出し
